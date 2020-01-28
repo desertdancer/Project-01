@@ -36,19 +36,23 @@ function buildQueryURL() {
    * @param {object} GRData - object containing NYT API data
    */
   function updatePage(GRData) {
-    console.log("hurray");
+    console.log("hurray"); 
+    
+    console.log(GRData);
     // Get from the form the number of results to display
     // API doesn't have a "limit" parameter, so we have to do this ourselves
     var numArticles = $("#article-count").val();
   
     // Log the GRData to console, where it will show up as an object
-    console.log(GRData);
+    x=GRData;
+    
+    console.log($(x).find("title")[0])
     console.log("------------------------------------");
   
     // Loop through and build elements for the defined number of articles
     for (var i = 0; i < numArticles; i++) {
       // Get specific article info for current index
-      var article = GRData.response.docs[i];
+      var article = $(GRData).find("title")[i];
   
       // Increase the articleCount (track article # - starting at 1)
       var articleCount = i + 1;
@@ -61,17 +65,17 @@ function buildQueryURL() {
       $("#article-section").append($articleList);
   
       // If the article has a headline, log and append to $articleList
-      var headline = article.headline;
+      var headline = article;
       var $articleListItem = $("<li class='list-group-item articleHeadline'>");
   
-      if (headline && headline.main) {
-        console.log(headline.main);
+      if (headline && headline.innerHTML) {
+        console.log(headline.innerHTML);
         $articleListItem.append(
           "<span class='label label-primary'>" +
             articleCount +
             "</span>" +
             "<strong> " +
-            headline.main +
+            headline.innerHTML +
             "</strong>"
         );
       }
@@ -131,10 +135,13 @@ function buildQueryURL() {
   
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
     // The data then gets passed as an argument to the updatePage function
+
     $.ajax({
       url: queryURL,
+      dataType: "xml",
       method: "GET"
     }).then(updatePage);
+
   });
   
   //  .on("click") function associated with the clear button
