@@ -1,37 +1,29 @@
 /**
  * pulls information from the form and build the query URL
- * @returns {string} URL for NYT API based on form inputs
+ * @returns {string} URL for GoodReads API based on form inputs
  */
+// Eliminate CORS issues
+jQuery.ajaxPrefilter(function (options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
 function buildQueryURL() {
     // queryURL is the url we'll use to query the API
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+    var queryURL = "https://www.goodreads.com/search/index.xml?";
   
     // Begin building an object to contain our API call's query parameters
     // Set the API key
-    var queryParams = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
+    var queryParams = { "key": "1ted1vfG1CFzf89SUcgzw" };
   
     // Grab text the user typed into the search input, add to the queryParams object
     queryParams.q = $("#search-term")
       .val()
       .trim();
   
-    // If the user provides a startYear, include it in the queryParams object
-    var startYear = $("#start-year")
-      .val()
-      .trim();
+    
   
-    if (parseInt(startYear)) {
-      queryParams.begin_date = startYear + "0101";
-    }
-  
-    // If the user provides an endYear, include it in the queryParams object
-    var endYear = $("#end-year")
-      .val()
-      .trim();
-  
-    if (parseInt(endYear)) {
-      queryParams.end_date = endYear + "0101";
-    }
+   
   
     // Logging the URL so we have access to it for troubleshooting
     console.log("---------------\nURL: " + queryURL + "\n---------------");
@@ -41,21 +33,22 @@ function buildQueryURL() {
   
   /**
    * takes API data (JSON/object) and turns it into elements on the page
-   * @param {object} NYTData - object containing NYT API data
+   * @param {object} GRData - object containing NYT API data
    */
-  function updatePage(NYTData) {
+  function updatePage(GRData) {
+    console.log("hurray");
     // Get from the form the number of results to display
     // API doesn't have a "limit" parameter, so we have to do this ourselves
     var numArticles = $("#article-count").val();
   
-    // Log the NYTData to console, where it will show up as an object
-    console.log(NYTData);
+    // Log the GRData to console, where it will show up as an object
+    console.log(GRData);
     console.log("------------------------------------");
   
     // Loop through and build elements for the defined number of articles
     for (var i = 0; i < numArticles; i++) {
       // Get specific article info for current index
-      var article = NYTData.response.docs[i];
+      var article = GRData.response.docs[i];
   
       // Increase the articleCount (track article # - starting at 1)
       var articleCount = i + 1;
@@ -134,6 +127,7 @@ function buildQueryURL() {
   
     // Build the query URL for the ajax request to the NYT API
     var queryURL = buildQueryURL();
+    console.log(queryURL)
   
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
     // The data then gets passed as an argument to the updatePage function
