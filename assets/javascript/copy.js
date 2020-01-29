@@ -1,29 +1,4 @@
-// 1. Initialize Firebase
-var config = {
-  apiKey: "1:879921915287:web:6f27793825726ef85f10d2",
-  // authDomain: "time-sheet-55009.firebaseapp.com",
-  databaseURL: "https://my-project-bcproject-1.firebaseio.com/",
-  // storageBucket: "time-sheet-55009.appspot.com"
-};
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var googlekey="AIzaSyD-x8nQSyrY2MLjh6Y2_xapYKQf99AyVJg"
-var googlekey="AIzaSyDE4LwfvZ2rcMP62x1eDZHAuahO2Y1g0nA"
+var googlekey="AIzaSyD-x8nQSyrY2MLjh6Y2_xapYKQf99AyVJg"
 
 
 
@@ -159,17 +134,17 @@ function buildQueryURL() {
     clear();
   googleBooks()
     // Build the query URL for the ajax request to the NYT API
-    // var queryURL = buildQueryURL();
-    // console.log(queryURL)
+    var queryURL = buildQueryURL();
+    console.log(queryURL)
   
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
     // The data then gets passed as an argument to the updatePage function
 
-    // $.ajax({
-      // url: queryURL,
-      // dataType: "xml",
-      // method: "GET"
-    // }).then(updatePage);
+    $.ajax({
+      url: queryURL,
+      dataType: "xml",
+      method: "GET"
+    }).then(updatePage);
 
   });
   function googleBooks(){
@@ -183,19 +158,7 @@ function buildQueryURL() {
     $.get(url)
       .then(function (response) {
         
-        console.log("responseData",response.items)
-        var books=response.items
-        for (var i=0; i<books.length;i ++){
-          $("#article-section").append(`<p>${books[i].volumeInfo.title}</p>`)
-          $("#article-section").append(`<p>${books[i].volumeInfo.description}</p>`)
-          $("#article-section").append(`<img src=${books[i].volumeInfo.imageLinks.thumbnail}>`)
-          $("#article-section").append(`<button class="save" googleID=${books[i].id}>save</button>`)
-          
-        }
-        $(".save").on("click",function(){
-          var googleId=$(this).attr("googleID")
-          console.log(googleId)
-        })
+        console.log("responseData",response.data)
       })
   }
   //  .on("click") function associated with the clear button
