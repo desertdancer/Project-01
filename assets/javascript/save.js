@@ -21,15 +21,29 @@ var secret = "AIzaSyDE4LwfvZ2rcMP62x1eDZHAuahO2Y1g0nA"
 database.ref().on("child_added", function (data) {
     var googleId = data.val().googleId
 
-    var url = ` https://www.googleapis.com/books/v1/volumes/${googleId}`;
+    var url = `https://www.googleapis.com/books/v1/volumes/${googleId}`;
     console.log(url)
     $.get(url)
         .then(function (books) {
             console.log(books)
+            
             $("#article-section").append(`<p>${books.volumeInfo.title}</p>`)
-          $("#article-section").append(`<p>${books.volumeInfo.description}</p>`)
-          $("#article-section").append(`<img src=${books.volumeInfo.imageLinks.thumbnail}>`)
+            $("#article-section").append(`<p>${books.volumeInfo.description}</p>`)
+            $("#article-section").append(`<img src=${books.volumeInfo.imageLinks.thumbnail}>
+            <button class="save" googleID=${books.id}>delete</button>`)
+            
         })
 
 
 })
+
+
+$(".save").on("click", function () {
+    alert ("hello")
+    var googleId = $(this).attr("googleID")
+    console.log(googleId)
+
+    // update the database
+    database.ref().child(googleId).remove()
+    
+  })

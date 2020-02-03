@@ -159,7 +159,7 @@ $("#run-search").on("click", function (event) {
   }
 
 
-  // Build the query URL for the ajax request to the GoodReads API
+  // Build the query URL for the ajax request to the API
   // var queryURL = buildQueryURL();
   // console.log(queryURL)
 
@@ -175,7 +175,6 @@ $("#run-search").on("click", function (event) {
 });
 function googleBooks(book) {
 
-
   var secret = googlekey;
   var url = ` https://www.googleapis.com/books/v1/volumes?q=${book}&key=${secret}`;
   console.log(url)
@@ -185,13 +184,21 @@ function googleBooks(book) {
       console.log("responseData", response.items)
       var books = response.items
       for (var i = 0; i < books.length; i++) {
-        $("#article-section").append(`<div class="bookImage"><img src=${books[i].volumeInfo.imageLinks.thumbnail}><br>${books[i].volumeInfo.title}<br><button class="save" googleID=${books[i].id}>save</button></div>`)
+
+        $("#article-section").append(`<div class="bookImage">
+
+        <img src=${books[i].volumeInfo.imageLinks.thumbnail}><br>
+
+        ${books[i].volumeInfo.title}<br>
+
+        <button class="save" googleID=${books[i].id}>save</button></div>`)
+        
         $("#article-section").append(`<div class="bookdscrp">${books[i].volumeInfo.description}</div>`)
         console.log(books[i].volumeInfo.description)
-        
-        
-
+             
       }
+
+
       $(".save").on("click", function () {
         var googleId = $(this).attr("googleID")
         console.log(googleId)
@@ -200,10 +207,10 @@ function googleBooks(book) {
         database.ref().push({
           googleId: googleId
         })
-
+      
       })
     })
-}
+  }
 
 // BEGINNING OF NYTBOOKS CODE ISABEL HELPED ME WITH
 // NOTE - NEED NAV TO GO BETWEEN SEARCH SCREEN AND SAVE SCREEN

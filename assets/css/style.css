@@ -11,40 +11,41 @@
  color: white;
 }
 
+
 .bookImage {
   vertical-align: top; 
 display: inline-block;
 margin-bottom: 100px;
 width: 200px;
 
-}
 
+}
 .container {
   border: 2px solid #662200;
-
-
 }
+
 
 
 .bookdscrp {
   display: inline-block;
-  
   width: 800px;
   margin-bottom: 100px;
 
 }
 
+}
+.bookdscrp {
+  width: 600px;
+  margin-bottom: 100px;
+
+}
+
+
 @media (min-width: 320px) and (max-width: 767px) {
   body {
 background-color: red;
 
-  }
-  .bookdscrp {
-    
-    
-    width: 600px;
-    margin-bottom: 100px;
-  
-  }
+
+
 
 }
