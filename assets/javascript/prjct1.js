@@ -51,6 +51,7 @@ function buildQueryURL() {
  * takes API data (JSON/object) and turns it into elements on page
  * @param {object} GRData - object containing GoodReads API data
  */
+/*
 function updatePage(GRData) {
   console.log("hurray");
 
@@ -65,6 +66,7 @@ function updatePage(GRData) {
   console.log($(x).find("title")[0])
   console.log("------------------------------------");
 
+  console.log("ARTICLE COUNT: " + numArticles);
   // Loop through and build elements for defined number of articles
   for (var i = 0; i < numArticles; i++) {
     // Get specific article info for current index
@@ -75,6 +77,7 @@ function updatePage(GRData) {
 
     // Create the  list group to contain the articles(books) and add the article content for each
     var $articleList = $("<ul>");
+    console.log($articleList);
     $articleList.addClass("list-group");
 
     // Add the newly created element to the DOM
@@ -126,6 +129,7 @@ function updatePage(GRData) {
     $articleList.append($articleListItem);
   }
 }
+*/
 
 // Function to empty out the articles
 function clear() {
@@ -181,10 +185,11 @@ function googleBooks(book) {
       console.log("responseData", response.items)
       var books = response.items
       for (var i = 0; i < books.length; i++) {
-        $("#article-section").append(`<p>${books[i].volumeInfo.title}</p>`)
-        $("#article-section").append(`<p>${books[i].volumeInfo.description}</p>`)
-        $("#article-section").append(`<img src=${books[i].volumeInfo.imageLinks.thumbnail}>`)
-        $("#article-section").append(`<button class="save" googleID=${books[i].id}>save</button>`)
+        $("#article-section").append(`<div class="bookImage"><img src=${books[i].volumeInfo.imageLinks.thumbnail}><br>${books[i].volumeInfo.title}<br><button class="save" googleID=${books[i].id}>save</button></div>`)
+        $("#article-section").append(`<div class="bookdscrp">${books[i].volumeInfo.description}</div>`)
+        console.log(books[i].volumeInfo.description)
+        
+        
 
       }
       $(".save").on("click", function () {

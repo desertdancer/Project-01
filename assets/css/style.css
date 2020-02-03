@@ -1,0 +1,50 @@
+
+.jumbotron
+{
+  background: url('../images/pexels-photo-590493.jpeg');
+ background-size: cover;
+ margin-top: 1em;
+ padding-top: 10em;
+ padding-bottom: 10em;
+
+ background-color: #20315A ; 
+ color: white;
+}
+
+.bookImage {
+  vertical-align: top; 
+display: inline-block;
+margin-bottom: 100px;
+width: 200px;
+
+}
+
+.container {
+  border: 2px solid #662200;
+
+
+}
+
+
+.bookdscrp {
+  display: inline-block;
+  
+  width: 800px;
+  margin-bottom: 100px;
+
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  body {
+background-color: red;
+
+  }
+  .bookdscrp {
+    
+    
+    width: 600px;
+    margin-bottom: 100px;
+  
+  }
+
+}

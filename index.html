@@ -5,42 +5,31 @@
   <meta charset="UTF-8">
   <title>Book Search</title>
   <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+  
 
  <!-- Firebase References -->
  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+ <!-- css -->
+ <link rel="stylesheet" href="assets/css/reset.css">
+ <link rel="stylesheet" href="assets/css/style.css">
 
 
-
-  <!-- Font -Awesome CSS Icons? -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" /> -->
-
-  <!-- Style to fix the issue of text extending past card length -->
-  <!-- <style> -->
-    <!-- .card-body a { -->
-      <!-- word-break: break-all; -->
-    <!-- } -->
-
-    <!-- .articleHeadline { -->
-      <!-- line-height: 1.5; -->
-    <!-- } -->
-  <!-- </style> -->
+ 
 </head>
 
 <body>
 
   <!-- Main Bootstrap Search -->
   <div class="container">
-
     <!-- Jumbotron for Title -->
-    <div class="jumbotron" style="background-color: #20315A ; color: white;">
+    <div class="jumbotron">
       <h1 class="text-center">
-        <strong>
-          <i class="books"></i>Browsing the Stacks</strong>
+        <strong><i class="books">Browsing the Stacks</i></strong>
       </h1>
     </div>
 
@@ -52,8 +41,8 @@
       <!-- </button> -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="save.html">Wish List</a>
+          <a class="nav-item nav-link active" href="#"><strong>Home</strong><span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="save.html"><strong>Wish List</strong></a>
           <!-- <a class="nav-item nav-link" href="#">Pricing</a> -->
           <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
         </div>
@@ -77,7 +66,7 @@
 
               <!-- Here we create the text box for capturing the search term-->
               <div class="form-group">
-                <label for="search">Search Term:</label>
+                <label for="search"><strong>Search Term:</strong></label>
                 <input type="text" class="form-control" id="search-term">
               </div>
 
@@ -97,9 +86,9 @@
 
               <!-- Here we have our final submit button -->
               <button type="submit" class="btn btn-default" id="run-search">
-                <i class="search"></i> Search</button>
+                <i class="search"></i><strong> Search</strong></button>
                 <button class="btn btn-default" id="clear-all">
-                  <i class=trash"></i> Clear Results</button>
+                  <i class=trash"></i><strong> Clear Results</strong></button>
 
             </form>
           </div>
