@@ -151,6 +151,18 @@ $("#run-search").on("click", function (event) {
   var book = $("#search-term")
   .val()
   .trim();
+  
+  if (book.length==0){
+    
+    document.getElementById("warnUser").innerHTML ="lease enter search query in box above";
+    return;
+  
+  }
+
+
+
+
+
   if (book=="best sellers" || book=="Best Sellers"){
     NYTBooks()  
   }
@@ -189,9 +201,9 @@ function googleBooks(book) {
 
         <img src=${books[i].volumeInfo.imageLinks.thumbnail}><br>
 
-        ${books[i].volumeInfo.title}<br>
+       <p class="bookTitle"> ${books[i].volumeInfo.title}</p>
 
-        <button class="save" googleID=${books[i].id}>save</button></div>`)
+        <button class="save" googleID=${books[i].id}>save<i class="fa fa-paperclip"></i></button></div>`)
         
         $("#article-section").append(`<div class="bookdscrp">${books[i].volumeInfo.description}</div>`)
         console.log(books[i].volumeInfo.description)
@@ -212,14 +224,11 @@ function googleBooks(book) {
     })
   }
 
-// BEGINNING OF NYTBOOKS CODE ISABEL HELPED ME WITH
-// NOTE - NEED NAV TO GO BETWEEN SEARCH SCREEN AND SAVE SCREEN
-// NEED WAY BETTER LAYOUT
-//Need separate SEARCH button?
+
+
 //Search results need to come into the card BELOW the Search Results headline
-//Best Seller list needs to wait to be searched...right now it automatically comes after the Books/description
-//Different results field also?
-//Wamt Best Sellers list to be separate request an either/or  books or reviews
+//Best Seller list needs to wait to be searched.
+//Best Sellers list to be separate request an either/or  books or reviews
 
 function NYTBooks() {
   

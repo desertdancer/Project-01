@@ -27,19 +27,31 @@ database.ref().on("child_added", function (data) {
         .then(function (books) {
             console.log(books)
             
-            $("#article-section").append(`<p>${books.volumeInfo.title}</p>`)
-            $("#article-section").append(`<p>${books.volumeInfo.description}</p>`)
-            $("#article-section").append(`<img src=${books.volumeInfo.imageLinks.thumbnail}>
-            <button class="save" googleID=${books.id}>delete</button>`)
+            // $("#article-section").append(`<p class="bookTitle">${books.volumeInfo.title}</p>`)
+            // $("#article-section").append(`<p>${books.volumeInfo.description}</p>`)
+            // $("#article-section").append(`<img src=${books.volumeInfo.imageLinks.thumbnail}>
+            // <button class="save" googleID=${books.id}>delete</button>`)
+            $("#article-section").append(`<hr>`)
+
+            $("#article-section").append(`<div class="bookImage">
+
+            <img src=${books.volumeInfo.imageLinks.thumbnail}><br>
+    
+           <p class="bookTitle"> ${books.volumeInfo.title}</p>
+    
+            <button class="save" googleID=${books.id}>save</button></div>`)
             
+            $("#article-section").append(`<div class="bookdscrp">${books.volumeInfo.description}</div>`)
+            console.log(books.volumeInfo.description)
+
         })
 
 
 })
 
 
-$(".save").on("click", function () {
-    alert ("hello")
+$(".remove").on("click", function () {
+    // alert ("hello")
     var googleId = $(this).attr("googleID")
     console.log(googleId)
 

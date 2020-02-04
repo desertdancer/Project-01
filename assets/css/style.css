@@ -11,19 +11,39 @@
  color: white;
 }
 
+#warnUser {
+  color: red; 
+  font-variant: small-caps;
+}
+
+/* .container { */
+  /* border: 2px solid #662200; */
+/* } */
+
+
+
+.container {
+  border: 20px solid red;
+}
+
+
+body {
+  background-color: #ddccaa !important;
+}
+
+
 
 .bookImage {
   vertical-align: top; 
 display: inline-block;
 margin-bottom: 100px;
 width: 200px;
-
-
-}
-.container {
-  border: 2px solid #662200;
 }
 
+
+.bookTitle {
+  font-weight: 700;
+  }
 
 
 .bookdscrp {
@@ -33,19 +53,27 @@ width: 200px;
 
 }
 
+
+h3, .books{
+/* background-color: rgba(0,0,0,0.5) */
+text-shadow: 2px 2px #000000; 
 }
-.bookdscrp {
-  width: 600px;
-  margin-bottom: 100px;
+
+
+.save {
+border: 4 px solid black; 
 
 }
+
+
+
+
 
 
 @media (min-width: 320px) and (max-width: 767px) {
   body {
-background-color: red;
-
-
-
-
+    background-color: red;
+  }
 }
+
+
